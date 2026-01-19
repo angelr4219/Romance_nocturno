@@ -285,4 +285,48 @@
     object-fit: cover;
     display: block;
   }
+  .footer-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .socials {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .social {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.78);
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 120ms ease, background 120ms ease, border 120ms ease, color 120ms ease;
+  }
+  
+  .social:hover {
+    color: rgba(255, 255, 255, 0.95);
+    border-color: rgba(177, 15, 26, 0.45);
+    background: rgba(177, 15, 26, 0.16);
+    transform: translateY(-1px);
+  }
+  .spotify-embed {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .member {
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.16);
+  }
   

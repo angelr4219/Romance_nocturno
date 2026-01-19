@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
-
-// Later, when you have the photo, put it in:
-//   src/assets/group-photo.jpg
-// and uncomment the next line:
-import groupPhoto from "./assets/group-photo.png";
+import groupPhoto from "../assets/group-photo.png";
 
 export default function Home() {
   return (
@@ -28,18 +24,23 @@ export default function Home() {
           </div>
         </div>
 
-        {/* PHOTO SPACE (placeholder for now) */}
+        {/* PHOTO */}
         <div className="hero-right">
-          <div className="photo-slot" aria-label="Group photo placeholder">
-            
-            <img className="photo" src={groupPhoto} alt="Romance Nocturno group photo" />
-            
-            <div className="photo-slot-inner">
-              <div className="photo-slot-title">Group Photo</div>
-              <div className="photo-slot-subtitle">
-                Drop your photo here later (wide/landscape looks best)
+          <div className="photo-slot" aria-label="Romance Nocturno group photo">
+            {groupPhoto ? (
+              <img
+                className="photo"
+                src={groupPhoto}
+                alt="Romance Nocturno group photo"
+              />
+            ) : (
+              <div className="photo-slot-inner">
+                <div className="photo-slot-title">Group Photo</div>
+                <div className="photo-slot-subtitle">
+                  Drop your photo here later (wide/landscape looks best)
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
@@ -49,7 +50,7 @@ export default function Home() {
         <div className="card">
           <h2 className="section-title">What we play</h2>
           <p className="muted">
-            Classic boleros and Hispanic romantic standards — intimate, heartfelt,
+            Classic boleros and Hispanic romantic standards. Intimate, heartfelt,
             and perfect for live nights, events, and serenatas.
           </p>
           <ul className="list">

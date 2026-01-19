@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import "./styles.css";
-import logo from "./assets/group-photo.png";
+import logo from "./assets/romance.jpeg";
 
 export default function Layout() {
   return (
@@ -24,6 +24,10 @@ export default function Layout() {
           <NavLink to="/contact" className={({ isActive }) => (isActive ? "active" : "")}>
             Contact
           </NavLink>
+          <NavLink to="/music" className={({ isActive }) => (isActive ? "active" : "")}>
+             Music
+          </NavLink>
+
         </nav>
       </header>
 

@@ -22,17 +22,13 @@ const members = [
         <section className="card">
           <h2 className="section-title">Members</h2>
           <div className="member-grid">
-            {members.map((m) => (
-              <div key={m.name} className="member">
-                <div className="member-avatar" aria-hidden="true">
-                  {m.name.slice(0, 1)}
-                </div>
-                <div>
-                  <div className="member-name">{m.name}</div>
-                  <div className="muted small">{m.role}</div>
-                </div>
-              </div>
-            ))}
+          {members.map((m) => (
+  <div key={m.name} className="member">
+    <div className="member-name">{m.name}</div>
+    <div className="muted small">{m.role}</div>
+  </div>
+))}
+
           </div>
         </section>
   
