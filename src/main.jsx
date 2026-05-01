@@ -5,9 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
+import Music from "./pages/Music.jsx";
+import Merch from "./pages/Merch.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import Music from "./pages/Music.jsx";
 
 const router = createBrowserRouter([
   {
@@ -16,9 +17,9 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "about", element: <About /> },
-      { path: "contact", element: <Contact /> },
       { path: "music", element: <Music /> },
-
+      { path: "merch", element: <Merch /> },
+      { path: "contact", element: <Contact /> },
     ],
   },
   { path: "*", element: <NotFound /> },
