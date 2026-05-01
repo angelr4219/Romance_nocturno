@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { members } from "../data/members";
+import silhouettesImg from "../assets/RN silhouettes.png";
 
 const pastShows = [
   { venue: "Eastside Luv",     date: "Sept 7, 2025",  note: "A full house. A perfect night." },
@@ -24,6 +25,7 @@ export default function Home() {
           <a className="poster-btn secondary" href="#cartas">Cartas de Romance</a>
         </div>
         <div className="hero-ornament">❧</div>
+        <img className="hero-silhouette" src={silhouettesImg} alt="" aria-hidden="true" />
       </section>
 
       {/* ─── UPCOMING SHOWS ─── */}
