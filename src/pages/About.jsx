@@ -46,7 +46,7 @@ export default function About() {
                 <div className="member-name">{m.name}</div>
                 <div className="member-role">{m.role}</div>
               </div>
-              <p className="member-bio">{m.bio}</p>
+              <p className="member-bio">{m.phrase}</p>
             </div>
           ))}
         </div>

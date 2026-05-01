@@ -1,18 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,500&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500;1,700&family=Inter:wght@400;600;800&display=swap');
+
 /* ===== DESIGN TOKENS ===== */
 :root {
-  --bg: #07070a;
-  --panel: rgba(255, 255, 255, 0.06);
-  --panel-2: rgba(255, 255, 255, 0.09);
-  --text: rgba(255, 255, 255, 0.92);
-  --muted: rgba(255, 255, 255, 0.65);
-  --border: rgba(255, 255, 255, 0.12);
-  --border-gold: rgba(201, 168, 74, 0.38);
+  --cream: #f3e7cf;
+  --paper: #e8d4af;
+  --navy: #10183a;
+  --red:   #a32035;
+  --rose:  #d95f7e;
+  --black: #171313;
+  --gold:  #c99b4a;
 
-  --red: #b10f1a;
-  --rose: #a33aa7;
-  --gold: #c9a84c;
-  --gold-dim: rgba(201, 168, 74, 0.14);
-  --cream: #f0e2c4;
+  /* system aliases */
+  --bg:          var(--cream);
+  --text:        var(--black);
+  --muted:       rgba(23, 19, 19, 0.58);
+  --border:      rgba(16, 24, 58, 0.20);
+  --border-gold: rgba(201, 155, 74, 0.55);
+  --panel:       rgba(232, 212, 175, 0.55);
+  --panel-2:     rgba(243, 231, 207, 0.85);
+  --gold-dim:    rgba(201, 155, 74, 0.12);
 }
 
 * {
@@ -22,14 +28,9 @@
 }
 
 body {
-  color: var(--text);
-  background:
-    radial-gradient(900px 600px at 15% 10%, rgba(177, 15, 26, 0.22), transparent 60%),
-    radial-gradient(800px 500px at 85% 25%, rgba(163, 58, 167, 0.08), transparent 60%),
-    radial-gradient(900px 700px at 50% 100%, rgba(255, 255, 255, 0.04), transparent 60%),
-    var(--bg);
-  background-attachment: fixed;
-  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  color: var(--black);
+  background: var(--cream);
+  font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
@@ -41,6 +42,7 @@ a { color: inherit; text-decoration: none; }
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
 }
 
 /* ===== HEADER ===== */
@@ -48,10 +50,10 @@ a { color: inherit; text-decoration: none; }
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(7, 7, 10, 0.82);
-  border-bottom: 1px solid var(--border);
+  background: rgba(243, 231, 207, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 3px solid var(--navy);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -70,9 +72,9 @@ a { color: inherit; text-decoration: none; }
   width: 42px;
   height: 42px;
   object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 4px 20px rgba(177, 15, 26, 0.38);
+  border-radius: 6px;
+  border: 2px solid var(--navy);
+  box-shadow: 3px 3px 0 var(--navy);
 }
 
 .brand-text {
@@ -82,46 +84,49 @@ a { color: inherit; text-decoration: none; }
 }
 
 .brand-name {
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
-  font-size: 0.86rem;
-  color: var(--cream);
+  font-size: 1rem;
+  color: var(--navy);
 }
 
 .brand-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   letter-spacing: 0.02em;
 }
 
 .nav {
   display: flex;
-  gap: 4px;
+  gap: 2px;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 .nav a {
-  color: var(--muted);
+  color: var(--navy);
   padding: 7px 14px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  font-size: 0.90rem;
-  letter-spacing: 0.02em;
-  transition: all 130ms ease;
+  border-bottom: 2px solid transparent;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 120ms ease, border-color 120ms ease;
 }
 
 .nav a:hover {
-  color: var(--text);
-  background: var(--panel);
-  border-color: var(--border);
+  color: var(--red);
+  border-bottom-color: var(--red);
 }
 
 .nav a.active {
-  color: var(--cream);
-  border-color: rgba(201, 168, 74, 0.42);
-  background: linear-gradient(160deg, rgba(177, 15, 26, 0.30), rgba(201, 168, 74, 0.06));
+  color: var(--red);
+  border-bottom-color: var(--red);
 }
 
 /* ===== MAIN ===== */
@@ -133,11 +138,18 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
 }
 
+/* Home page: cancel main padding so full-bleed sections go edge-to-edge */
+.main:has(.home) {
+  padding: 0;
+  max-width: 100%;
+}
+
 /* ===== FOOTER ===== */
 .footer {
-  border-top: 1px solid var(--border);
-  padding: 22px 28px;
-  background: rgba(0, 0, 0, 0.22);
+  border-top: 3px solid var(--navy);
+  padding: 28px 28px;
+  background: var(--navy);
+  color: var(--cream);
 }
 
 .footer-inner {
@@ -151,14 +163,15 @@ a { color: inherit; text-decoration: none; }
 }
 
 .footer-copy {
-  color: var(--muted);
+  color: rgba(243, 231, 207, 0.65);
   font-size: 0.86rem;
 }
 
 .footer-tagline {
-  color: var(--gold);
-  font-size: 0.80rem;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
+  color: var(--gold);
+  font-size: 0.84rem;
   letter-spacing: 0.04em;
   margin-top: 3px;
 }
@@ -170,20 +183,22 @@ a { color: inherit; text-decoration: none; }
 }
 
 .social {
-  color: rgba(255, 255, 255, 0.68);
-  padding: 7px 13px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  font-size: 0.86rem;
+  color: rgba(243, 231, 207, 0.65);
+  padding: 6px 13px;
+  border: 1px solid rgba(243, 231, 207, 0.20);
+  background: rgba(243, 231, 207, 0.05);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
   transition: all 130ms ease;
 }
 
 .social:hover {
   color: var(--cream);
-  border-color: var(--border-gold);
-  background: var(--gold-dim);
-  transform: translateY(-1px);
+  border-color: var(--gold);
+  background: rgba(201, 155, 74, 0.12);
 }
 
 /* ===== UTILITIES ===== */
@@ -204,20 +219,21 @@ a { color: inherit; text-decoration: none; }
 
 /* ===== CARDS ===== */
 .card {
-  border: 1px solid var(--border);
-  background: var(--panel);
-  border-radius: 20px;
+  border: 2px solid var(--navy);
+  background: var(--panel-2);
+  border-radius: 4px;
   padding: 24px;
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.42);
+  box-shadow: 5px 5px 0 var(--navy);
 }
 
 .card.inset {
-  background: var(--panel-2);
+  background: var(--paper);
   box-shadow: none;
 }
 
 .card.gold-border {
-  border-color: var(--border-gold);
+  border-color: var(--gold);
+  box-shadow: 5px 5px 0 var(--gold);
 }
 
 /* ===== BADGE ===== */
@@ -227,7 +243,7 @@ a { color: inherit; text-decoration: none; }
   gap: 8px;
   color: var(--muted);
   border: 1px solid var(--border-gold);
-  background: rgba(201, 168, 74, 0.06);
+  background: rgba(201, 155, 74, 0.10);
   padding: 5px 12px;
   border-radius: 999px;
   font-size: 0.80rem;
@@ -237,9 +253,10 @@ a { color: inherit; text-decoration: none; }
 /* ===== TYPOGRAPHY ===== */
 .hero-title {
   margin: 14px 0 10px;
+  font-family: 'Bodoni Moda', serif;
   font-size: clamp(2.4rem, 5vw, 3.6rem);
-  letter-spacing: 0.02em;
-  color: var(--cream);
+  letter-spacing: -0.02em;
+  color: var(--navy);
   line-height: 1.08;
 }
 
@@ -252,17 +269,20 @@ a { color: inherit; text-decoration: none; }
 }
 
 .page-title {
-  font-size: 2.1rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.4rem;
   margin-bottom: 10px;
-  color: var(--cream);
-  letter-spacing: 0.01em;
+  color: var(--navy);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .section-title {
-  font-size: 1.22rem;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.4rem;
   margin-bottom: 14px;
-  letter-spacing: 0.02em;
-  color: var(--cream);
+  letter-spacing: 0.01em;
+  color: var(--navy);
 }
 
 .ornament {
@@ -278,41 +298,44 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   gap: 8px;
   padding: 10px 22px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text);
-  font-size: 0.92rem;
-  letter-spacing: 0.02em;
+  border: 2px solid var(--navy);
+  background: var(--cream);
+  color: var(--navy);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
   cursor: pointer;
-  font-family: inherit;
   transition: all 130ms ease;
+  box-shadow: 3px 3px 0 var(--navy);
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.10);
-  border-color: rgba(255, 255, 255, 0.22);
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--navy);
 }
 
 .btn.primary {
-  border-color: rgba(177, 15, 26, 0.58);
-  background: linear-gradient(160deg, rgba(177, 15, 26, 0.52), rgba(177, 15, 26, 0.14));
+  background: var(--red);
   color: var(--cream);
+  border-color: var(--red);
+  box-shadow: 3px 3px 0 var(--black);
 }
 
 .btn.primary:hover {
-  background: linear-gradient(160deg, rgba(177, 15, 26, 0.70), rgba(177, 15, 26, 0.26));
+  box-shadow: 1px 1px 0 var(--black);
 }
 
 .btn.gold {
-  border-color: var(--border-gold);
-  background: linear-gradient(160deg, rgba(201, 168, 74, 0.20), rgba(201, 168, 74, 0.05));
+  border-color: var(--gold);
+  background: var(--cream);
   color: var(--gold);
+  box-shadow: 3px 3px 0 var(--gold);
 }
 
 .btn.gold:hover {
-  background: linear-gradient(160deg, rgba(201, 168, 74, 0.34), rgba(201, 168, 74, 0.10));
+  box-shadow: 1px 1px 0 var(--gold);
 }
 
 /* ===== GRIDS ===== */
@@ -337,7 +360,7 @@ a { color: inherit; text-decoration: none; }
   .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
 }
 
-/* ===== HOME: HERO SPLIT ===== */
+/* ===== HERO SPLIT (legacy, used on Home before redesign) ===== */
 .hero-split {
   display: grid;
   gap: 24px;
@@ -349,21 +372,20 @@ a { color: inherit; text-decoration: none; }
   .hero-split { grid-template-columns: 1.25fr 0.75fr; }
 }
 
-/* ===== HOME: FEATURE CARDS ===== */
+/* ===== FEATURE CARDS ===== */
 .feature-card {
-  border: 1px solid var(--border);
-  background: var(--panel);
-  border-radius: 20px;
+  border: 2px solid var(--navy);
+  background: var(--panel-2);
+  border-radius: 4px;
   padding: 22px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.36);
+  box-shadow: 4px 4px 0 var(--navy);
   display: block;
   transition: all 160ms ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-gold);
-  box-shadow: 0 26px 72px rgba(0, 0, 0, 0.52);
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--navy);
 }
 
 .feature-card-icon {
@@ -372,11 +394,13 @@ a { color: inherit; text-decoration: none; }
 }
 
 .feature-card-title {
-  font-size: 1.08rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: var(--cream);
+  color: var(--navy);
   margin-bottom: 7px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .feature-card-desc {
@@ -387,23 +411,22 @@ a { color: inherit; text-decoration: none; }
 
 /* ===== PHOTO SLOTS ===== */
 .photo-slot {
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  background: rgba(0, 0, 0, 0.22);
-  border-radius: 18px;
+  border: 2px solid var(--navy);
+  background: var(--paper);
+  border-radius: 4px;
   min-height: 280px;
   overflow: hidden;
   display: grid;
   place-items: center;
   position: relative;
+  box-shadow: 5px 5px 0 var(--navy);
 }
 
 .photo-slot::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(380px 200px at 20% 25%, rgba(177, 15, 26, 0.20), transparent 60%),
-    radial-gradient(350px 200px at 80% 80%, rgba(201, 168, 74, 0.08), transparent 60%);
+  background: radial-gradient(380px 200px at 20% 25%, rgba(163, 32, 53, 0.08), transparent 60%);
   pointer-events: none;
 }
 
@@ -416,14 +439,15 @@ a { color: inherit; text-decoration: none; }
 
 .photo-slot-icon {
   font-size: 2.4rem;
-  opacity: 0.42;
+  opacity: 0.35;
   display: block;
   margin-bottom: 12px;
 }
 
 .photo-slot-title {
+  font-family: 'Oswald', sans-serif;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   font-size: 0.80rem;
   margin-bottom: 7px;
@@ -431,7 +455,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .photo-slot-subtitle {
-  color: rgba(255, 255, 255, 0.42);
+  color: var(--muted);
   font-size: 0.80rem;
   line-height: 1.55;
 }
@@ -460,27 +484,30 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 10px;
   padding: 20px 14px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.16);
+  border: 2px solid var(--navy);
+  background: var(--paper);
+  box-shadow: 4px 4px 0 var(--navy);
   text-align: center;
-  transition: border-color 140ms ease;
+  transition: all 140ms ease;
 }
 
-.member:hover { border-color: var(--border-gold); }
+.member:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--navy);
+}
 
 .member-photo {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  border: 2px solid rgba(201, 168, 74, 0.28);
-  background: rgba(0, 0, 0, 0.32);
+  border: 2px solid var(--navy);
+  background: var(--cream);
   overflow: hidden;
   display: grid;
   place-items: center;
   flex-shrink: 0;
   font-size: 1.6rem;
-  color: rgba(255, 255, 255, 0.28);
+  color: var(--muted);
 }
 
 .member-photo img {
@@ -490,21 +517,27 @@ a { color: inherit; text-decoration: none; }
 }
 
 .member-name {
+  font-family: 'Oswald', sans-serif;
   font-weight: 700;
   font-size: 0.98rem;
-  color: var(--cream);
-  letter-spacing: 0.02em;
+  color: var(--navy);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .member-role {
-  color: var(--gold);
-  font-size: 0.80rem;
-  letter-spacing: 0.04em;
+  color: var(--red);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .member-bio {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
   color: var(--muted);
-  font-size: 0.83rem;
   line-height: 1.55;
 }
 
@@ -524,26 +557,24 @@ a { color: inherit; text-decoration: none; }
 }
 
 .product-card {
-  border: 1px solid var(--border);
-  background: var(--panel);
-  border-radius: 20px;
+  border: 2px solid var(--navy);
+  background: var(--paper);
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.38);
+  box-shadow: 5px 5px 0 var(--navy);
   display: flex;
   flex-direction: column;
   transition: all 160ms ease;
 }
 
 .product-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-gold);
-  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.52);
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--navy);
 }
 
 .product-image-slot {
   aspect-ratio: 1;
-  background: rgba(0, 0, 0, 0.24);
-  border-bottom: 1px solid var(--border);
+  background: var(--cream);
+  border-bottom: 2px solid var(--navy);
   display: grid;
   place-items: center;
   position: relative;
@@ -554,7 +585,7 @@ a { color: inherit; text-decoration: none; }
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(280px 180px at 50% 60%, rgba(177, 15, 26, 0.16), transparent 65%);
+  background: radial-gradient(280px 180px at 50% 60%, rgba(163, 32, 53, 0.08), transparent 65%);
 }
 
 .product-image-slot-inner {
@@ -566,16 +597,17 @@ a { color: inherit; text-decoration: none; }
 
 .product-image-icon {
   font-size: 2.6rem;
-  opacity: 0.46;
+  opacity: 0.40;
   display: block;
   margin-bottom: 8px;
 }
 
 .product-image-label {
+  font-family: 'Oswald', sans-serif;
   font-size: 0.74rem;
   text-transform: uppercase;
-  letter-spacing: 0.10em;
-  color: rgba(255, 255, 255, 0.32);
+  letter-spacing: 0.12em;
+  color: var(--muted);
 }
 
 .product-info {
@@ -587,10 +619,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 .product-name {
-  font-size: 0.98rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: var(--cream);
-  letter-spacing: 0.01em;
+  color: var(--navy);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .product-desc {
@@ -601,9 +635,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 .product-price {
-  font-size: 1.04rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--red);
   margin-top: 4px;
 }
 
@@ -639,21 +674,23 @@ a { color: inherit; text-decoration: none; }
 }
 
 .form-label {
-  font-size: 0.80rem;
-  letter-spacing: 0.06em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--navy);
 }
 
 .form-input,
 .form-select,
 .form-textarea {
-  background: rgba(0, 0, 0, 0.32);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  background: var(--cream);
+  border: 2px solid var(--navy);
+  border-radius: 0;
   padding: 11px 14px;
-  color: var(--text);
-  font-family: inherit;
+  color: var(--black);
+  font-family: 'Inter', sans-serif;
   font-size: 0.94rem;
   outline: none;
   transition: border-color 130ms ease, box-shadow 130ms ease;
@@ -663,19 +700,19 @@ a { color: inherit; text-decoration: none; }
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
-  border-color: rgba(201, 168, 74, 0.52);
-  box-shadow: 0 0 0 3px rgba(201, 168, 74, 0.10);
+  border-color: var(--red);
+  box-shadow: 3px 3px 0 var(--red);
 }
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.26);
+  color: var(--muted);
 }
 
 .form-select {
   -webkit-appearance: none;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.45)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(23,19,19,0.55)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   padding-right: 38px;
@@ -683,8 +720,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .form-select option {
-  background: #141414;
-  color: var(--text);
+  background: var(--cream);
+  color: var(--black);
 }
 
 .form-textarea {
@@ -721,7 +758,6 @@ a { color: inherit; text-decoration: none; }
 .note {
   border: 1px solid var(--border-gold);
   background: var(--gold-dim);
-  border-radius: 12px;
   padding: 12px 16px;
   font-size: 0.90rem;
   color: var(--muted);
@@ -730,60 +766,609 @@ a { color: inherit; text-decoration: none; }
 
 /* ===== QUOTE ===== */
 .quote-block {
-  border-left: 3px solid var(--gold);
+  border-left: 4px solid var(--red);
   padding: 14px 22px;
-  background: rgba(201, 168, 74, 0.04);
-  border-radius: 0 14px 14px 0;
+  background: rgba(163, 32, 53, 0.04);
 }
 
 .quote-text {
-  font-size: 1.12rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
   font-style: italic;
-  color: var(--cream);
+  color: var(--navy);
   line-height: 1.68;
   letter-spacing: 0.01em;
 }
 
 .quote-attr {
-  font-size: 0.80rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.88rem;
   color: var(--gold);
   margin-top: 10px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
 }
 
 /* ===== SPOTIFY ===== */
 .spotify-embed {
   overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid var(--border);
+  border: 2px solid var(--navy);
 }
 
 /* ===== DIVIDER ===== */
 .divider {
-  height: 1px;
-  background: var(--border);
+  height: 2px;
+  background: var(--navy);
+  opacity: 0.15;
+}
+
+/* ========================================
+   HOME PAGE
+   ======================================== */
+
+/* Full-bleed: break out of max-width container */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Poster-style button */
+.poster-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border: 2px solid var(--black);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--black);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.poster-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--black);
+}
+
+.poster-btn.primary {
+  background: var(--red);
+  color: var(--cream);
+  border-color: var(--red);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.poster-btn.secondary {
+  background: transparent;
+  color: var(--black);
+  border-color: var(--black);
+}
+
+.poster-btn.gold {
+  background: transparent;
+  color: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 4px 4px 0 var(--gold);
+}
+
+.poster-btn.gold:hover {
+  box-shadow: 1px 1px 0 var(--gold);
+}
+
+/* Section stamp */
+.section-stamp {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.section-stamp.red   { color: var(--red); }
+.section-stamp.cream { color: rgba(243, 231, 207, 0.55); }
+
+/* ─── HERO POSTER ─── */
+.hero-poster {
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px 64px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(163, 32, 53, 0.12), transparent),
+    var(--cream);
+}
+
+.hero-poster::before {
+  content: '☾';
+  position: absolute;
+  font-size: clamp(20rem, 42vw, 38rem);
+  color: rgba(163, 32, 53, 0.05);
+  transform: rotate(-15deg);
+  top: -6rem;
+  right: -6rem;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.hero-eyebrow {
+  position: relative;
+  z-index: 1;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  color: var(--red);
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+.poster-title {
+  position: relative;
+  z-index: 1;
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(5rem, 16vw, 14rem);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  color: var(--navy);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.hero-tagline {
+  position: relative;
+  z-index: 1;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+  color: var(--muted);
+  max-width: 52ch;
+  line-height: 1.72;
+  margin-bottom: 36px;
+}
+
+.hero-ctas {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-ornament {
+  position: relative;
+  z-index: 1;
+  margin-top: 60px;
+  font-size: 2rem;
+  color: var(--gold);
+  opacity: 0.60;
+}
+
+/* ─── SHOWS SECTION ─── */
+.shows-section {
+  background: var(--navy);
+  padding: 64px 24px;
+  border-top: 3px solid var(--black);
+  border-bottom: 3px solid var(--black);
+}
+
+.shows-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.show-flyer {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: clamp(20px, 4vw, 44px);
+  background: var(--cream);
+  outline: 3px solid var(--black);
+}
+
+.show-flyer-left {
+  flex-shrink: 0;
+}
+
+.show-block-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  border: 3px solid var(--navy);
+  padding: 14px 20px;
+  background: var(--navy);
+  color: var(--cream);
+  min-width: 110px;
+}
+
+.show-weekday {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.show-number {
+  font-family: 'Oswald', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cream);
+}
+
+.show-month {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  color: rgba(243, 231, 207, 0.65);
+  margin-top: 2px;
+}
+
+.show-flyer-center {
+  flex: 1;
+  min-width: 200px;
+}
+
+.show-venue-name {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.show-address {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+
+.show-details-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.show-tag {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  padding: 5px 12px;
+  border: 2px solid var(--navy);
+  color: var(--navy);
+  text-transform: uppercase;
+}
+
+.show-flyer-right {
+  flex-shrink: 0;
+}
+
+/* ─── CARTAS DE ROMANCE ─── */
+.cartas-section {
+  background: var(--paper);
+  padding: 80px 24px;
+  border-top: 3px solid var(--navy);
+}
+
+.cartas-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cartas-section-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.cartas-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  color: var(--muted);
+  margin-bottom: 56px;
+}
+
+.cartas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 28px;
+  text-align: left;
+}
+
+/* ─── THE CARTA CARD ─── */
+.carta-card {
+  position: relative;
+  min-height: 370px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  /* paper texture via faint horizontal lines */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      rgba(16, 24, 58, 0.028) 27px,
+      rgba(16, 24, 58, 0.028) 28px
+    ),
+    linear-gradient(160deg, var(--cream) 0%, var(--paper) 100%);
+  border: 4px solid var(--navy);
+  outline: 2px solid var(--navy);
+  outline-offset: -10px;
+  box-shadow: 8px 8px 0 var(--navy);
+  cursor: default;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.carta-card:hover {
+  transform: translateY(-12px) rotate(-1.5deg);
+  box-shadow: 16px 20px 0 rgba(16, 24, 58, 0.45);
+}
+
+.carta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.carta-number {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.carta-star {
+  color: var(--red);
+  font-size: 0.85rem;
+  opacity: 0.65;
+  margin-top: 4px;
+}
+
+.carta-image-frame {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0;
+  border: 2px solid var(--navy);
+  background: rgba(16, 24, 58, 0.04);
+  min-height: 130px;
+}
+
+.carta-icon-large {
+  font-size: 3.2rem;
+  color: var(--navy);
+  opacity: 0.30;
+}
+
+.carta-footer {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.carta-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.carta-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  margin-bottom: 3px;
+}
+
+.carta-role {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.70rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.carta-phrase {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--navy);
+  line-height: 1.5;
+}
+
+/* ─── POSTER ARCHIVE ─── */
+.archive-section {
+  background: var(--navy);
+  padding: 80px 24px;
+  border-top: 3px solid var(--black);
+}
+
+.archive-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.archive-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.archive-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: rgba(243, 231, 207, 0.50);
+  margin-bottom: 44px;
+}
+
+.archive-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.archive-card {
+  border: 2px solid rgba(243, 231, 207, 0.18);
+  background: rgba(243, 231, 207, 0.04);
+  overflow: hidden;
+  transition: all 160ms ease;
+}
+
+.archive-card:hover {
+  border-color: var(--gold);
+  background: rgba(243, 231, 207, 0.07);
+}
+
+.archive-card-image {
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(243, 231, 207, 0.03);
+  border-bottom: 1px solid rgba(243, 231, 207, 0.10);
+  color: rgba(243, 231, 207, 0.12);
+  font-size: 3rem;
+}
+
+.archive-card-venue {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cream);
+  padding: 14px 14px 4px;
+}
+
+.archive-card-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 0.90rem;
+  padding: 0 14px 4px;
+}
+
+.archive-card-note {
+  color: rgba(243, 231, 207, 0.45);
+  font-size: 0.80rem;
+  padding: 0 14px 16px;
+  line-height: 1.55;
+}
+
+/* ─── MERCH TEASER ─── */
+.merch-teaser {
+  text-align: center;
+  padding: 80px 24px;
+  background: var(--cream);
+  border-top: 3px solid var(--navy);
+}
+
+.merch-teaser .section-stamp {
+  margin-bottom: 14px;
+}
+
+.merch-teaser-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
+.merch-teaser-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 44ch;
+  margin: 0 auto 28px;
+  line-height: 1.65;
 }
 
 /* ===== MOBILE ===== */
 @media (max-width: 580px) {
   .header {
     padding: 10px 16px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  .brand-tag {
-    display: none;
-  }
+  .brand-tag { display: none; }
 
   .main {
     padding: 22px 16px 52px;
   }
 
-  .nav a {
-    padding: 6px 10px;
-    font-size: 0.82rem;
+  .main:has(.home) {
+    padding: 0;
   }
 
-  .card {
-    padding: 18px;
+  .nav a {
+    padding: 6px 10px;
+    font-size: 0.76rem;
   }
+
+  .card { padding: 18px; }
+
+  .poster-title {
+    font-size: clamp(4rem, 22vw, 6rem);
+  }
+
+  .show-flyer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .show-flyer-right {
+    width: 100%;
+  }
+
+  .show-flyer-right .poster-btn {
+    width: 100%;
+  }
+
+  .hero-tagline br { display: none; }
 }

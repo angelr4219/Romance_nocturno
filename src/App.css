@@ -1,42 +1,318 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700;6..96,900&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;600;800&display=swap');
+
+:root {
+  --cream: #f4ead6;
+  --paper: #ead8bc;
+  --ink: #181313;
+  --rose: #a8243f;
+  --rose-soft: #dc8fa4;
+  --terracotta: #c96f52;
+  --sky: #99d8e8;
+  --navy: #151d3b;
+
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(220, 143, 164, 0.22), transparent 32rem),
+    linear-gradient(135deg, var(--cream), var(--paper));
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-shell {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px clamp(20px, 5vw, 72px);
+  background: rgba(244, 234, 214, 0.82);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid rgba(24, 19, 19, 0.16);
+}
+
+.brand {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+}
+
+.hero {
+  min-height: 78vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 80px 24px;
+  position: relative;
+}
+
+.hero::before {
+  content: '☾';
+  position: absolute;
+  font-size: clamp(12rem, 32vw, 30rem);
+  color: rgba(168, 36, 63, 0.08);
+  transform: rotate(-18deg);
+}
+
+.eyebrow {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--rose);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(4rem, 14vw, 11rem);
+  line-height: 0.82;
+  letter-spacing: -0.08em;
+  text-transform: lowercase;
+  text-shadow: 6px 6px 0 rgba(220, 143, 164, 0.55);
+}
+
+h2 {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 28px auto 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+}
+
+.hero-actions {
+  position: relative;
+  z-index: 1;
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.button:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.button.primary {
+  background: var(--rose);
+  color: var(--cream);
+}
+
+.button.secondary {
+  background: var(--cream);
+}
+
+.poster-section,
+.members-section,
+.merch-section {
+  padding: 90px clamp(20px, 6vw, 90px);
+}
+
+.poster-section {
+  background: var(--terracotta);
+  color: white;
+  border-block: 3px solid var(--ink);
+}
+
+.show-card {
+  margin-top: 34px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: clamp(24px, 4vw, 44px);
+  background: var(--cream);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  box-shadow: 10px 10px 0 rgba(24, 19, 19, 0.9);
+}
+
+.show-date {
+  font-weight: 900;
+  color: var(--rose);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.show-card h3 {
+  margin-top: 8px;
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 0.92;
+}
+
+.loteria-grid {
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 28px;
+}
+
+.loteria-card {
+  position: relative;
+  min-height: 390px;
+  padding: 18px;
+  background:
+    linear-gradient(rgba(244, 234, 214, 0.92), rgba(244, 234, 214, 0.92)),
+    radial-gradient(circle, rgba(168, 36, 63, 0.16), transparent 60%);
+  border: 4px solid var(--navy);
+  outline: 2px solid var(--navy);
+  outline-offset: -12px;
+  text-align: center;
+  box-shadow: 8px 8px 0 var(--rose);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.loteria-card:hover {
+  transform: translateY(-8px) rotate(-1deg);
+  box-shadow: 12px 14px 0 var(--rose);
+}
+
+.card-number {
+  font-weight: 900;
+  color: var(--rose);
+  text-align: left;
+}
+
+.card-image-placeholder {
+  height: 170px;
+  margin: 16px 0;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--ink);
+  background: var(--sky);
+  font-size: 4rem;
+  color: var(--rose);
+}
+
+.loteria-card h3 {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 2.2rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.member-name {
+  margin: 12px 0 0;
+  font-weight: 900;
+}
+
+.member-role {
+  margin: 0;
+  color: var(--rose);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+}
+
+.member-phrase {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+}
+
+.merch-section {
+  background: #f8f1e5;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.footer {
+  padding: 48px 24px;
+  text-align: center;
+  background: var(--ink);
+  color: var(--cream);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.footer p {
+  margin: 0 0 8px;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 2rem;
+}
+
+@media (max-width: 760px) {
+  .nav {
+    align-items: flex-start;
+    gap: 16px;
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .nav-links {
+    flex-wrap: wrap;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .show-card {
+    align-items: flex-start;
+    flex-direction: column;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

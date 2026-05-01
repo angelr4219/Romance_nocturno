@@ -1,13 +1,42 @@
 import { useState } from "react";
 
-export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+const FORMSPREE_ID = "2991717370340310722"; // replace with your Formspree form ID
 
-  function handleSubmit(e) {
+export default function Contact() {
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const [fields, setFields] = useState({
+    name: "",
+    email: "",
+    eventType: "",
+    date: "",
+    message: "",
+  });
+
+  function onChange(e) {
+    setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    // TODO: connect to Formspree, EmailJS, or Netlify Forms
-    // Example Formspree: set form action="https://formspree.io/f/YOUR_ID" method="POST"
-    setSubmitted(true);
+    setStatus("submitting");
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          ...fields,
+          _replyto: fields.email,
+          subject: `Romance Nocturno Booking Request from ${fields.name}`,
+        }),
+      });
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -39,8 +68,7 @@ export default function Contact() {
         <div className="card">
           <h2 className="section-title">Find Us Online</h2>
           <p className="muted small" style={{ marginBottom: 16, lineHeight: 1.6 }}>
-            Follow us for updates, live videos, and announcements. Replace these
-            links with your real profiles when you're ready.
+            Follow us for updates, live videos, and announcements.
           </p>
           <div className="socials" style={{ flexDirection: "column" }}>
             <a className="social" href="#instagram" target="_blank" rel="noreferrer">📷  Instagram</a>
@@ -48,8 +76,7 @@ export default function Contact() {
             <a className="social" href="#youtube"   target="_blank" rel="noreferrer">▶️  YouTube</a>
             <a className="social" href="#spotify"   target="_blank" rel="noreferrer">🎵  Spotify</a>
           </div>
-          <p className="mono" style={{ marginTop: 18 }}>romancenocturno@email.com</p>
-          <p className="muted small" style={{ marginTop: 5 }}>Replace with your real booking email.</p>
+          <p className="mono" style={{ marginTop: 18 }}>angelrocks0319@gmail.com</p>
         </div>
       </div>
 
@@ -57,7 +84,7 @@ export default function Contact() {
       <section className="card">
         <h2 className="section-title">Send Us a Message</h2>
 
-        {submitted ? (
+        {status === "success" ? (
           <div style={{ textAlign: "center", padding: "32px 16px" }}>
             <div style={{ fontSize: "2.4rem", marginBottom: 14 }}>🌙</div>
             <p className="muted" style={{ lineHeight: 1.70, maxWidth: "42ch", margin: "0 auto" }}>
@@ -70,18 +97,39 @@ export default function Contact() {
             <div className="form-row cols-2">
               <div className="form-group">
                 <label className="form-label">Your Name</label>
-                <input className="form-input" type="text" placeholder="Full name" required />
+                <input
+                  className="form-input"
+                  type="text"
+                  name="name"
+                  placeholder="Full name"
+                  value={fields.name}
+                  onChange={onChange}
+                  required
+                />
               </div>
               <div className="form-group">
                 <label className="form-label">Email Address</label>
-                <input className="form-input" type="email" placeholder="your@email.com" required />
+                <input
+                  className="form-input"
+                  type="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  value={fields.email}
+                  onChange={onChange}
+                  required
+                />
               </div>
             </div>
 
             <div className="form-row cols-2">
               <div className="form-group">
                 <label className="form-label">Event Type</label>
-                <select className="form-select">
+                <select
+                  className="form-select"
+                  name="eventType"
+                  value={fields.eventType}
+                  onChange={onChange}
+                >
                   <option value="">Select an event type...</option>
                   <option>Serenata</option>
                   <option>Private Dinner</option>
@@ -95,7 +143,13 @@ export default function Contact() {
               </div>
               <div className="form-group">
                 <label className="form-label">Event Date</label>
-                <input className="form-input" type="date" />
+                <input
+                  className="form-input"
+                  type="date"
+                  name="date"
+                  value={fields.date}
+                  onChange={onChange}
+                />
               </div>
             </div>
 
@@ -103,14 +157,28 @@ export default function Contact() {
               <label className="form-label">Your Message</label>
               <textarea
                 className="form-textarea"
+                name="message"
                 placeholder="Tell us about your event — location, vibe, number of guests, and anything else we should know..."
+                value={fields.message}
+                onChange={onChange}
                 required
               />
             </div>
 
+            {status === "error" && (
+              <p style={{ color: "var(--red)", fontSize: "0.88rem" }}>
+                Something went wrong. Please try again or email us directly at angelrocks0319@gmail.com.
+              </p>
+            )}
+
             <div>
-              <button type="submit" className="btn primary" style={{ padding: "12px 30px" }}>
-                Send Message
+              <button
+                type="submit"
+                className="btn primary"
+                style={{ padding: "12px 30px" }}
+                disabled={status === "submitting"}
+              >
+                {status === "submitting" ? "Sending..." : "Send Message"}
               </button>
             </div>
           </form>
