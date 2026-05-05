@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import "./styles.css";
 import logo from "./assets/romance.jpeg";
+import { theme } from "./theme";
 
 const navLinks = [
   { to: "/",        label: "Home",    end: true },
@@ -12,7 +13,7 @@ const navLinks = [
 
 export default function Layout() {
   return (
-    <div className="app">
+    <div className="app" style={theme}>
       <header className="header">
         <div className="brand">
           <img className="logo" src={logo} alt="Romance Nocturno logo" />
@@ -47,6 +48,7 @@ export default function Layout() {
               © {new Date().getFullYear()} Romance Nocturno · Los Angeles
             </span>
             <span className="footer-tagline">Amor recordado en la noche</span>
+            <span className="footer-credit">Created by Angel Ramirez</span>
           </div>
 
           <div className="socials">

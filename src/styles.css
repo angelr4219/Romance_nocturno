@@ -138,8 +138,12 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
 }
 
-/* Home page: cancel main padding so full-bleed sections go edge-to-edge */
-.main:has(.home) {
+/* Full-bleed pages */
+.main:has(.home),
+.main:has(.about),
+.main:has(.music-page),
+.main:has(.merch-page),
+.main:has(.contact-page) {
   padding: 0;
   max-width: 100%;
 }
@@ -1108,7 +1112,7 @@ a { color: inherit; text-decoration: none; }
 
 .cartas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
   text-align: left;
 }
@@ -1167,19 +1171,19 @@ a { color: inherit; text-decoration: none; }
 
 .carta-image-frame {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
   margin: 6px 0;
   border: 2px solid var(--navy);
-  background: rgba(16, 24, 58, 0.04);
-  min-height: 130px;
+  min-height: 180px;
 }
 
-.carta-icon-large {
-  font-size: 3.2rem;
-  color: var(--navy);
-  opacity: 0.30;
+.carta-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  min-height: 180px;
 }
 
 .carta-footer {
@@ -1258,7 +1262,7 @@ a { color: inherit; text-decoration: none; }
 .archive-grid {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .archive-card {
@@ -1275,13 +1279,21 @@ a { color: inherit; text-decoration: none; }
 
 .archive-card-image {
   aspect-ratio: 3 / 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(243, 231, 207, 0.03);
+  overflow: hidden;
   border-bottom: 1px solid rgba(243, 231, 207, 0.10);
-  color: rgba(243, 231, 207, 0.12);
-  font-size: 3rem;
+}
+
+.archive-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 300ms ease;
+}
+
+.archive-card:hover .archive-card-image img {
+  transform: scale(1.04);
 }
 
 .archive-card-venue {
@@ -1309,21 +1321,78 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.55;
 }
 
-/* ─── MERCH TEASER ─── */
-.merch-teaser {
-  text-align: center;
-  padding: 80px 24px;
-  background: var(--cream);
-  border-top: 3px solid var(--navy);
+.archive-card--placeholder {
+  opacity: 0.38;
+  border-style: dashed;
 }
 
-.merch-teaser .section-stamp {
+.archive-card--placeholder .archive-card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(243, 231, 207, 0.03);
+}
+
+.archive-placeholder-icon {
+  font-size: 2rem;
+  color: rgba(243, 231, 207, 0.18);
+}
+
+.archive-placeholder-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(243, 231, 207, 0.30);
+  text-align: center;
+  padding: 12px 14px;
+}
+
+/* ─── MERCH TEASER ─── */
+.merch-teaser {
+  display: flex;
+  align-items: stretch;
+  background: var(--cream);
+  border-top: 3px solid var(--navy);
+  overflow: hidden;
+  min-height: 420px;
+}
+
+.merch-teaser-photo {
+  flex: 0 0 45%;
+  overflow: hidden;
+}
+
+.merch-teaser-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 400ms ease;
+}
+
+.merch-teaser:hover .merch-teaser-photo img {
+  transform: scale(1.03);
+}
+
+.merch-teaser-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 64px 48px;
+  text-align: left;
+}
+
+.merch-teaser-content .section-stamp {
   margin-bottom: 14px;
 }
 
 .merch-teaser-title {
   font-family: 'Bodoni Moda', serif;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3.6rem);
   font-weight: 900;
   color: var(--navy);
   letter-spacing: -0.03em;
@@ -1335,13 +1404,1144 @@ a { color: inherit; text-decoration: none; }
   font-style: italic;
   font-size: 1.2rem;
   color: var(--muted);
-  max-width: 44ch;
-  margin: 0 auto 28px;
+  max-width: 38ch;
+  margin-bottom: 28px;
   line-height: 1.65;
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 580px) {
+/* ========================================
+   DIVIDER DEMO PAGE  (/dividers)
+   ======================================== */
+.dd-page {
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+.dd-header {
+  text-align: center;
+  padding: 64px 24px 48px;
+  background: var(--navy);
+  border-bottom: 3px solid var(--black);
+}
+
+.dd-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 900;
+  color: var(--cream);
+  letter-spacing: -0.04em;
+  margin: 12px 0 16px;
+}
+
+.dd-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: rgba(243, 231, 207, 0.60);
+}
+
+.dd-option {
+  border-bottom: 3px solid var(--navy);
+}
+
+.dd-label {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 22px 32px 14px;
+  background: var(--cream);
+}
+
+.dd-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+}
+
+.dd-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.dd-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* context blocks */
+.dd-preview-dark  { height: 52px; background: var(--navy); }
+.dd-preview-light { height: 52px; background: var(--cream); }
+
+/* shared divider shell */
+.dd-divider {
+  position: relative;
+  width: 100%;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.dd-svg {
+  display: block;
+  width: 100%;
+  height: 56px;
+}
+
+/* ── 1. Waveform ── */
+/* uses dd-divider + dd-svg only */
+
+/* ── 2. Rosal ── */
+.dd-rosal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 14px 0;
+}
+
+.dd-rosal-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--red) 40%, transparent);
+  opacity: 0.45;
+}
+
+.dd-rosal-center {
+  flex-shrink: 0;
+  padding: 0 20px;
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+}
+
+/* ── 3. Papel Picado ── */
+.dd-papel {
+  padding: 0;
+  background: transparent;
+}
+
+.dd-papel-string {
+  width: 100%;
+  height: 2px;
+  background: var(--gold);
+  opacity: 0.55;
+}
+
+.dd-papel-flags {
+  display: flex;
+  justify-content: space-around;
+}
+
+.dd-papel-flag {
+  width: 0;
+  height: 0;
+  border-left: 28px solid transparent;
+  border-right: 28px solid transparent;
+  border-top: 48px solid var(--red);
+  opacity: 0.80;
+}
+
+/* ── 4. Cuerdas ── */
+.dd-cuerdas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 0;
+  position: relative;
+}
+
+.dd-cuerda {
+  height: 1px;
+  width: 100%;
+  background: var(--navy);
+}
+
+.dd-cuerdas-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--cream);
+  padding: 4px 20px;
+  z-index: 1;
+}
+
+.dd-cuerdas-rose {
+  font-size: 1.4rem;
+  letter-spacing: 0.3em;
+}
+
+/* ── 5. Sello Nocturno ── */
+.dd-sello {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+}
+
+.dd-sello-line {
+  width: 100%;
+  height: 1px;
+  background: var(--navy);
+  opacity: 0.25;
+}
+
+.dd-sello-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(0.58rem, 1.2vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* ── 6. Azulejo ── */
+.dd-azulejo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  gap: 0;
+  overflow: hidden;
+  color: var(--navy);
+  opacity: 0.55;
+}
+
+.dd-azulejo-tile {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* ── 7. Estrellas ── */
+.dd-estrellas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(6px, 2vw, 18px);
+  padding: 14px 24px;
+  color: var(--gold);
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+/* ── 8. Ola Musical ── */
+.dd-ola {
+  position: relative;
+  height: 64px;
+}
+
+.dd-ola-wave {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.dd-ola-notes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 24px;
+}
+
+.dd-note {
+  font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+  color: var(--navy);
+  opacity: 0.35;
+  animation: noteFloat 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes noteFloat {
+  from { transform: translateY(0);    opacity: 0.25; }
+  to   { transform: translateY(-8px); opacity: 0.65; }
+}
+
+/* ========================================
+   MERCH PAGE
+   ======================================== */
+
+/* ─── Hero ─── */
+.merch-page-hero {
+  display: flex;
+  align-items: stretch;
+  min-height: 72vh;
+  background: var(--navy);
+  border-bottom: 3px solid var(--black);
+}
+
+.merch-page-hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 6vw, 88px) clamp(28px, 5vw, 72px);
+}
+
+.merch-page-hero-photo {
+  flex: 0 0 45%;
+  overflow: hidden;
+}
+
+.merch-page-hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.merch-coming-note {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 24px;
+  opacity: 0.80;
+}
+
+/* ─── Products ─── */
+.merch-products {
+  background: var(--cream);
+  border-bottom: 3px solid var(--navy);
+  padding: clamp(48px, 6vw, 80px) clamp(24px, 4vw, 64px);
+}
+
+.merch-products-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.merch-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.merch-product-card {
+  border: 3px solid var(--navy);
+  box-shadow: 6px 6px 0 var(--navy);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.merch-product-card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--navy);
+}
+
+.merch-product-image {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 24, 58, 0.04);
+  border-bottom: 2px solid var(--navy);
+  font-size: 3.2rem;
+}
+
+.merch-product-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.merch-product-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.merch-product-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.merch-product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.merch-product-price {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.04em;
+}
+
+.merch-product-soon {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+}
+
+/* ─── CTA ─── */
+.merch-cta {
+  background: var(--navy);
+  border-top: 3px solid var(--black);
+  text-align: center;
+  padding: clamp(56px, 7vw, 88px) 24px;
+}
+
+.merch-cta-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.merch-cta-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--cream);
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.merch-cta-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  color: rgba(243, 231, 207, 0.65);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 46ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========================================
+   CONTACT PAGE
+   ======================================== */
+
+/* ─── Hero ─── */
+.contact-hero {
+  min-height: 38vh;
+  background: var(--navy);
+  border-bottom: 3px solid var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px 24px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-hero::before {
+  content: '✉';
+  position: absolute;
+  font-size: clamp(14rem, 26vw, 24rem);
+  color: rgba(243, 231, 207, 0.03);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.contact-hero .poster-title {
+  color: var(--cream);
+}
+
+/* ─── Info row ─── */
+.contact-info {
+  background: var(--cream);
+  border-bottom: 3px solid var(--navy);
+}
+
+.contact-info-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 80px) clamp(24px, 4vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+
+.contact-info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-book-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--red);
+  margin-top: 20px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--red);
+}
+
+.contact-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.contact-social {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy);
+  padding: 12px 18px;
+  border: 2px solid var(--navy);
+  transition: all 130ms ease;
+}
+
+.contact-social:hover {
+  background: var(--navy);
+  color: var(--cream);
+}
+
+.contact-email {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 20px;
+}
+
+/* ─── Form ─── */
+.contact-form-section {
+  background: var(--paper);
+  border-top: 3px solid var(--navy);
+}
+
+.contact-form-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 80px) clamp(24px, 4vw, 48px);
+}
+
+.contact-form-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  margin-bottom: 36px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.contact-form-error {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--red);
+}
+
+.contact-success {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.contact-success-moon {
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.contact-success p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 44ch;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ========================================
+   SELLO NOCTURNO DIVIDER
+   ======================================== */
+.sello-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 32px;
+  background: var(--cream);
+  border-top: 2px solid var(--navy);
+  border-bottom: 2px solid var(--navy);
+}
+
+.sello-line {
+  width: 100%;
+  height: 1px;
+  background: var(--navy);
+  opacity: 0.18;
+}
+
+.sello-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(0.55rem, 1.1vw, 0.76rem);
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  opacity: 0.55;
+}
+
+/* ========================================
+   FOOTER CREDIT
+   ======================================== */
+.footer-credit {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: rgba(243, 231, 207, 0.38);
+  letter-spacing: 0.03em;
+  margin-top: 1px;
+}
+
+/* ========================================
+   ABOUT PAGE
+   ======================================== */
+
+/* ─── Hero ─── */
+.about-hero {
+  display: flex;
+  align-items: stretch;
+  min-height: 72vh;
+  background: var(--navy);
+  border-bottom: 3px solid var(--black);
+}
+
+.about-hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 6vw, 88px) clamp(28px, 5vw, 72px);
+}
+
+.about-headline {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin: 18px 0 28px;
+}
+
+.about-intro-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-style: italic;
+  color: rgba(243, 231, 207, 0.72);
+  max-width: 46ch;
+  line-height: 1.72;
+}
+
+.about-hero-photo {
+  flex: 0 0 42%;
+  overflow: hidden;
+}
+
+.about-hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ─── Story ─── */
+.about-story {
+  background: var(--cream);
+  border-bottom: 3px solid var(--navy);
+}
+
+.about-story-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 80px) clamp(24px, 4vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.about-story-text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.about-section-heading {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  margin-bottom: 8px;
+}
+
+.about-section-heading--light {
+  color: var(--cream);
+}
+
+.about-story-text p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  color: var(--muted);
+  line-height: 1.76;
+}
+
+.about-story-photo {
+  overflow: hidden;
+  border: 3px solid var(--navy);
+  box-shadow: 8px 8px 0 var(--navy);
+  aspect-ratio: 4 / 3;
+}
+
+.about-story-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ─── Members ─── */
+.about-members {
+  background: var(--navy);
+  border-bottom: 3px solid var(--black);
+  padding: clamp(48px, 6vw, 80px) clamp(24px, 4vw, 64px);
+}
+
+.about-members-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-members-heading {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 900;
+  color: var(--cream);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin-bottom: 48px;
+  text-transform: uppercase;
+}
+
+.about-members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 28px;
+}
+
+.about-member-card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(243, 231, 207, 0.18);
+  overflow: hidden;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+
+.about-member-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-6px);
+}
+
+.about-member-photo {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.about-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 300ms ease;
+}
+
+.about-member-card:hover .about-member-photo img {
+  transform: scale(1.04);
+}
+
+.about-member-info {
+  padding: 14px 14px 18px;
+  background: rgba(243, 231, 207, 0.04);
+}
+
+.about-member-number {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  color: var(--gold);
+}
+
+.about-member-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin: 4px 0 2px;
+}
+
+.about-member-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.about-member-phrase {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.90rem;
+  color: rgba(243, 231, 207, 0.55);
+  line-height: 1.5;
+}
+
+/* ─── Sound & Style ─── */
+.about-sound {
+  background: var(--paper);
+  border-top: 3px solid var(--navy);
+}
+
+.about-sound-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 80px) clamp(24px, 4vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.about-sound-ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.about-sound-ul li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--muted);
+  line-height: 1.6;
+  padding-left: 20px;
+  position: relative;
+}
+
+.about-sound-ul li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-size: 0.6rem;
+  top: 6px;
+}
+
+.about-sound-quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 36px;
+  border: 3px solid var(--navy);
+  box-shadow: 6px 6px 0 var(--navy);
+  background: var(--cream);
+}
+
+.about-quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-style: italic;
+  color: var(--navy);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.about-quote-attr {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+/* ========================================
+   MUSIC PAGE
+   ======================================== */
+
+/* ─── Hero ─── */
+.music-hero {
+  min-height: 38vh;
+  background: var(--navy);
+  border-bottom: 3px solid var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px 24px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.music-hero::before {
+  content: '♫';
+  position: absolute;
+  font-size: clamp(16rem, 30vw, 28rem);
+  color: rgba(243, 231, 207, 0.03);
+  pointer-events: none;
+  line-height: 1;
+  top: -2rem;
+}
+
+.music-hero .poster-title {
+  color: var(--cream);
+}
+
+/* ─── Shared section shell ─── */
+.music-section {
+  border-bottom: 3px solid var(--black);
+}
+
+.music-section--cream { background: var(--cream); }
+.music-section--paper { background: var(--paper); }
+.music-section--navy  { background: var(--navy); }
+
+.music-section-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 72px) clamp(24px, 4vw, 48px);
+}
+
+.music-section-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  margin-bottom: 32px;
+}
+
+.music-section-title--light {
+  color: var(--cream);
+}
+
+/* ─── YouTube embed ─── */
+.yt-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border: 3px solid var(--navy);
+  box-shadow: 8px 8px 0 var(--navy);
+  overflow: hidden;
+}
+
+.yt-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ─── Spotify ─── */
+.spotify-embed {
+  border-radius: 4px;
+  border: 2px solid var(--navy) !important;
+  display: block;
+}
+
+/* ─── Repertoire list ─── */
+.music-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.music-list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  color: rgba(243, 231, 207, 0.78);
+  line-height: 1.6;
+  padding-left: 24px;
+  position: relative;
+}
+
+.music-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.6rem;
+  top: 7px;
+}
+
+/* =============================================
+   RESPONSIVE — tablet → phone
+   Breakpoints:
+     1024px  iPad Pro portrait / landscape
+      768px  iPad mini portrait / large phone
+      480px  phone  (iPhone 16/17, Pixel, Galaxy S)
+      390px  compact phone  (iPhone 16 standard)
+   ============================================= */
+
+/* ── iPad Pro & iPad Air (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  .hero-poster {
+    min-height: 80vh;
+    padding: 72px 32px 56px;
+  }
+
+  .about-members-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── iPad mini portrait / large phones (≤ 768px) ── */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 20px;
+  }
+
+  /* About */
+  .about-hero {
+    flex-direction: column;
+    min-height: unset;
+  }
+  .about-hero-photo {
+    flex: 0 0 auto;
+    height: 340px;
+  }
+  .about-story-inner,
+  .about-sound-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .about-members-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Merch */
+  .merch-page-hero {
+    flex-direction: column;
+    min-height: unset;
+  }
+  .merch-page-hero-photo {
+    flex: 0 0 auto;
+    height: 320px;
+  }
+  .merch-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Contact */
+  .contact-info-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .contact-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cartas-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .archive-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .show-flyer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .show-flyer-right {
+    width: 100%;
+  }
+
+  .show-flyer-right .poster-btn {
+    width: 100%;
+  }
+
+  .hero-poster {
+    min-height: 75vh;
+    padding: 64px 28px 48px;
+  }
+
+  .hero-silhouette {
+    width: 90%;
+    opacity: 0.20;
+  }
+}
+
+/* ── Phone — iPhone 16/17, Pixel, Galaxy S (≤ 480px) ── */
+@media (max-width: 480px) {
   .header {
     padding: 10px 16px;
     flex-wrap: wrap;
@@ -1365,22 +2565,173 @@ a { color: inherit; text-decoration: none; }
 
   .card { padding: 18px; }
 
+  /* Hero */
+  .hero-poster {
+    min-height: 100svh;
+    padding: 72px 20px 0;
+    justify-content: flex-start;
+    padding-top: 88px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.92rem;
+    margin-bottom: 14px;
+  }
+
   .poster-title {
-    font-size: clamp(4rem, 22vw, 6rem);
+    font-size: clamp(5rem, 24vw, 7rem);
+    margin-bottom: 20px;
   }
 
-  .show-flyer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .show-flyer-right {
-    width: 100%;
-  }
-
-  .show-flyer-right .poster-btn {
-    width: 100%;
+  .hero-tagline {
+    font-size: 1.08rem;
+    margin-bottom: 28px;
   }
 
   .hero-tagline br { display: none; }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    gap: 12px;
+  }
+
+  .hero-ctas .poster-btn {
+    width: 100%;
+  }
+
+  .hero-ornament {
+    margin-top: 32px;
+  }
+
+  .hero-silhouette {
+    position: relative;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 24px;
+    opacity: 0.22;
+    display: block;
+  }
+
+  /* Shows */
+  .shows-section {
+    padding: 44px 16px;
+  }
+
+  .show-block-date {
+    min-width: 88px;
+    padding: 10px 14px;
+  }
+
+  .show-number {
+    font-size: 3.2rem;
+  }
+
+  .show-venue-name {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  /* Cartas */
+  .cartas-section {
+    padding: 56px 16px;
+  }
+
+  .cartas-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .carta-card {
+    min-height: 300px;
+    padding: 10px;
+    box-shadow: 5px 5px 0 var(--navy);
+  }
+
+  .carta-card-title {
+    font-size: 1.05rem;
+  }
+
+  /* Archive */
+  .archive-section {
+    padding: 56px 16px;
+  }
+
+  .archive-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* Merch */
+  .merch-teaser {
+    flex-direction: column;
+    min-height: unset;
+  }
+
+  .merch-teaser-photo {
+    flex: 0 0 auto;
+    height: 260px;
+  }
+
+  .merch-teaser-content {
+    padding: 36px 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .merch-teaser-sub {
+    max-width: 100%;
+  }
+
+  /* About phone */
+  .about-hero-photo,
+  .merch-page-hero-photo {
+    height: 240px;
+  }
+
+  /* Merch phone */
+  .merch-products-grid {
+    grid-template-columns: 1fr;
+  }
+  .merch-page-hero-text {
+    padding: 52px 20px 36px;
+  }
+  .about-headline {
+    font-size: clamp(3.6rem, 20vw, 5.5rem);
+  }
+  .about-members-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .about-sound-inner {
+    padding: 40px 16px;
+  }
+  .about-sound-quote {
+    padding: 24px;
+  }
+
+  /* Music phone */
+  .music-hero {
+    min-height: 28vh;
+    padding: 52px 20px 36px;
+  }
+  .music-section-inner {
+    padding: 40px 16px;
+  }
+}
+
+/* ── Compact phone — iPhone 16 standard, SE (≤ 390px) ── */
+@media (max-width: 390px) {
+  .poster-title {
+    font-size: clamp(4.4rem, 26vw, 6rem);
+  }
+
+  .cartas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-ctas {
+    max-width: 100%;
+  }
 }
